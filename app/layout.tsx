@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { getAuthSession } from "@/lib/auth";
 
 import "./globals.css";
@@ -19,13 +20,15 @@ export default async function RootLayout({
   const session = await getAuthSession();
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme="vscode-dark">
       <body className="min-h-screen antialiased">
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-          <Navbar isAuthenticated={Boolean(session?.user)} username={session?.user?.username} />
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <ThemeProvider>
+          <div className="min-h-screen bg-background text-foreground">
+            <Navbar isAuthenticated={Boolean(session?.user)} username={session?.user?.username} />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

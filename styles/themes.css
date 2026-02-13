@@ -1,0 +1,153 @@
+/* ============================================
+   Theme Color Variables
+   Each theme defines the same color variables
+   with different values
+   ============================================ */
+
+/* Default Theme: VS Code Dark */
+:root,
+:root[data-theme="vscode-dark"] {
+  --color-bg: #1e1e1e;
+  --color-bg-secondary: #252526;
+  --color-text: #d4d4d4;
+  --color-text-muted: #9da0a7;
+  --color-card: #2d2d30;
+  --color-border: #3f3f46;
+  --color-primary: #0e639c;
+  --color-primary-hover: #1177bb;
+  --color-accent: #4ec9b0;
+  --color-success: #4ec9b0;
+  --color-danger: #f14c4c;
+  --color-warning: #d7ba7d;
+  --color-code-bg: #111111;
+  --color-code-text: #ce9178;
+  --color-primary-foreground: #f6fbff;
+}
+
+/* Monokai Theme */
+:root[data-theme="monokai"] {
+  --color-bg: #272822;
+  --color-bg-secondary: #31322b;
+  --color-text: #f8f8f2;
+  --color-text-muted: #b5b89c;
+  --color-card: #383a32;
+  --color-border: #4a4c42;
+  --color-primary: #a6e22e;
+  --color-primary-hover: #b7f23b;
+  --color-accent: #66d9ef;
+  --color-success: #a6e22e;
+  --color-danger: #f92672;
+  --color-warning: #fd971f;
+  --color-code-bg: #1f201b;
+  --color-code-text: #f8f8f2;
+  --color-primary-foreground: #132000;
+}
+
+/* Monokai Dimmed Theme */
+:root[data-theme="monokai-dimmed"] {
+  --color-bg: #1f1f1f;
+  --color-bg-secondary: #262727;
+  --color-text: #d8d6cf;
+  --color-text-muted: #a29f96;
+  --color-card: #2d2e2e;
+  --color-border: #3c3d3d;
+  --color-primary: #8dc149;
+  --color-primary-hover: #9acf5a;
+  --color-accent: #74d2e7;
+  --color-success: #8dc149;
+  --color-danger: #e05f87;
+  --color-warning: #e3a860;
+  --color-code-bg: #171818;
+  --color-code-text: #d8d6cf;
+  --color-primary-foreground: #101b07;
+}
+
+/* Dracula Theme */
+:root[data-theme="dracula"] {
+  --color-bg: #282a36;
+  --color-bg-secondary: #323544;
+  --color-text: #f8f8f2;
+  --color-text-muted: #b7b9ca;
+  --color-card: #343746;
+  --color-border: #4c4f66;
+  --color-primary: #bd93f9;
+  --color-primary-hover: #c9a4ff;
+  --color-accent: #8be9fd;
+  --color-success: #50fa7b;
+  --color-danger: #ff5555;
+  --color-warning: #ffb86c;
+  --color-code-bg: #21222c;
+  --color-code-text: #f1fa8c;
+  --color-primary-foreground: #1b1230;
+}
+
+/* Solarized Dark Theme */
+:root[data-theme="solarized-dark"] {
+  --color-bg: #002b36;
+  --color-bg-secondary: #073642;
+  --color-text: #93a1a1;
+  --color-text-muted: #839496;
+  --color-card: #0a3946;
+  --color-border: #145161;
+  --color-primary: #268bd2;
+  --color-primary-hover: #369ce8;
+  --color-accent: #2aa198;
+  --color-success: #859900;
+  --color-danger: #dc322f;
+  --color-warning: #b58900;
+  --color-code-bg: #001f27;
+  --color-code-text: #eee8d5;
+  --color-primary-foreground: #eaf6ff;
+}
+
+/* GitHub Light Theme */
+:root[data-theme="github-light"] {
+  --color-bg: #f6f8fa;
+  --color-bg-secondary: #ffffff;
+  --color-text: #1f2328;
+  --color-text-muted: #59636e;
+  --color-card: #ffffff;
+  --color-border: #d0d7de;
+  --color-primary: #0969da;
+  --color-primary-hover: #1b7af0;
+  --color-accent: #1f883d;
+  --color-success: #1a7f37;
+  --color-danger: #cf222e;
+  --color-warning: #9a6700;
+  --color-code-bg: #f6f8fa;
+  --color-code-text: #24292f;
+  --color-primary-foreground: #ffffff;
+}
+
+/* ============================================
+   Derived Color Variables (Theme-dependent)
+   These use color-mix to create variants
+   ============================================ */
+
+:root {
+  /* Contest Status Colors */
+  --color-status-live-bg: color-mix(in srgb, var(--color-success) 15%, transparent);
+  --color-status-live-border: color-mix(in srgb, var(--color-success) 45%, transparent);
+  --color-status-live-text: var(--color-success);
+  
+  --color-status-upcoming-bg: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  --color-status-upcoming-border: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  --color-status-upcoming-text: var(--color-primary);
+  
+  --color-status-ended-bg: color-mix(in srgb, var(--color-text-muted) 15%, transparent);
+  --color-status-ended-border: color-mix(in srgb, var(--color-text-muted) 45%, transparent);
+  --color-status-ended-text: var(--color-text-muted);
+  
+  /* Compatibility Aliases (for existing components) */
+  --background: var(--color-bg);
+  --foreground: var(--color-text);
+  --surface: var(--color-bg-secondary);
+  --surface-2: var(--color-card);
+  --border: var(--color-border);
+  --muted-foreground: var(--color-text-muted);
+  --accent: var(--color-primary);
+  --accent-foreground: var(--color-primary-foreground);
+  
+  /* Legacy radius for compatibility */
+  --radius: var(--radius-lg);
+}

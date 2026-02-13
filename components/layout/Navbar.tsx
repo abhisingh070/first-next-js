@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
 
+import ThemeToggle from "@/components/ui/ThemeToggle";
+
 type NavbarProps = {
   isAuthenticated?: boolean;
   username?: string;
@@ -21,16 +23,16 @@ export default function Navbar({ isAuthenticated = false, username }: NavbarProp
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-[var(--surface)]/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur">
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="text-lg font-semibold tracking-tight text-[var(--foreground)]">
+        <Link href="/" className="text-lg font-semibold tracking-tight text-foreground">
           CodeArena
         </Link>
 
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--foreground)] md:hidden"
+          className="rounded-md border border-border px-3 py-2 text-sm text-foreground md:hidden"
           aria-label="Toggle navigation"
         >
           Menu
@@ -44,7 +46,7 @@ export default function Navbar({ isAuthenticated = false, username }: NavbarProp
                 key={link.href}
                 href={link.href}
                 className={`text-sm transition ${
-                  isActive ? "text-[var(--accent)]" : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                  isActive ? "text-accent" : "text-text-secondary hover:text-foreground"
                 }`}
               >
                 {link.label}
@@ -54,18 +56,19 @@ export default function Navbar({ isAuthenticated = false, username }: NavbarProp
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
+          <ThemeToggle />
           {isAuthenticated ? (
             <>
               <Link
                 href={`/${username}/dashboard`}
-                className="rounded-md px-3 py-2 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                className="rounded-md px-3 py-2 text-sm text-text-secondary hover:text-foreground"
               >
                 {username}
               </Link>
               <button
                 type="button"
                 onClick={() => signOut({ callbackUrl: "/" })}
-                className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--foreground)] hover:bg-[var(--surface-2)]"
+                className="rounded-md border border-border px-3 py-2 text-sm text-foreground hover:bg-surface-2"
               >
                 Logout
               </button>
@@ -74,13 +77,13 @@ export default function Navbar({ isAuthenticated = false, username }: NavbarProp
             <>
               <Link
                 href="/auth/login"
-                className="rounded-md px-3 py-2 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                className="rounded-md px-3 py-2 text-sm text-text-secondary hover:text-foreground"
               >
                 Login
               </Link>
               <Link
                 href="/auth/signup"
-                className="rounded-md bg-[var(--accent)] px-3 py-2 text-sm font-medium text-[var(--accent-foreground)] hover:brightness-110"
+                className="rounded-md bg-accent px-3 py-2 text-sm font-medium text-accent-foreground hover:brightness-110"
               >
                 Sign Up
               </Link>
@@ -90,13 +93,16 @@ export default function Navbar({ isAuthenticated = false, username }: NavbarProp
       </nav>
 
       {isOpen ? (
-        <div className="space-y-1 border-t border-[var(--border)] px-4 py-3 md:hidden">
+        <div className="space-y-1 border-t border-border px-4 py-3 md:hidden">
+          <div className="mb-2">
+            <ThemeToggle />
+          </div>
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="block rounded-md px-3 py-2 text-sm text-[var(--muted-foreground)] hover:bg-[var(--surface-2)] hover:text-[var(--foreground)]"
+              className="block rounded-md px-3 py-2 text-sm text-text-secondary hover:bg-surface-2 hover:text-foreground"
             >
               {link.label}
             </Link>
@@ -106,14 +112,14 @@ export default function Navbar({ isAuthenticated = false, username }: NavbarProp
               <Link
                 href={`/${username}/dashboard`}
                 onClick={() => setIsOpen(false)}
-                className="block rounded-md px-3 py-2 text-sm text-[var(--muted-foreground)] hover:bg-[var(--surface-2)] hover:text-[var(--foreground)]"
+                className="block rounded-md px-3 py-2 text-sm text-text-secondary hover:bg-surface-2 hover:text-foreground"
               >
                 Dashboard
               </Link>
               <button
                 type="button"
                 onClick={() => signOut({ callbackUrl: "/" })}
-                className="block w-full rounded-md border border-[var(--border)] px-3 py-2 text-left text-sm text-[var(--foreground)] hover:bg-[var(--surface-2)]"
+                className="block w-full rounded-md border border-border px-3 py-2 text-left text-sm text-foreground hover:bg-surface-2"
               >
                 Logout
               </button>
@@ -123,14 +129,14 @@ export default function Navbar({ isAuthenticated = false, username }: NavbarProp
               <Link
                 href="/auth/login"
                 onClick={() => setIsOpen(false)}
-                className="block rounded-md px-3 py-2 text-sm text-[var(--muted-foreground)] hover:bg-[var(--surface-2)] hover:text-[var(--foreground)]"
+                className="block rounded-md px-3 py-2 text-sm text-text-secondary hover:bg-surface-2 hover:text-foreground"
               >
                 Login
               </Link>
               <Link
                 href="/auth/signup"
                 onClick={() => setIsOpen(false)}
-                className="block rounded-md bg-[var(--accent)] px-3 py-2 text-sm font-medium text-[var(--accent-foreground)]"
+                className="block rounded-md bg-accent px-3 py-2 text-sm font-medium text-accent-foreground"
               >
                 Sign Up
               </Link>

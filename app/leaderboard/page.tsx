@@ -24,8 +24,8 @@ export default async function LeaderboardPage({ searchParams }: LeaderboardPageP
 
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
-      <h1 className="text-3xl font-semibold text-[var(--foreground)]">Global Leaderboard</h1>
-      <p className="mt-2 text-sm text-[var(--muted-foreground)]">Codeforces-style ranking by rating and solved volume.</p>
+      <h1 className="text-3xl font-semibold text-foreground">Global Leaderboard</h1>
+      <p className="mt-2 text-sm text-text-secondary">Codeforces-style ranking by rating and solved volume.</p>
 
       <div className="mt-6 flex flex-wrap gap-2">
         {filters.map((item) => {
@@ -36,8 +36,8 @@ export default async function LeaderboardPage({ searchParams }: LeaderboardPageP
               href={`/leaderboard?filter=${item}`}
               className={`rounded-md px-4 py-2 text-sm ${
                 active
-                  ? "bg-[var(--accent)] font-medium text-[var(--accent-foreground)]"
-                  : "border border-[var(--border)] text-[var(--muted-foreground)] hover:bg-[var(--surface)]"
+                  ? "bg-accent font-medium text-accent-foreground"
+                  : "border border-border text-text-secondary hover:bg-surface"
               }`}
             >
               {item.replace("_", " ")}

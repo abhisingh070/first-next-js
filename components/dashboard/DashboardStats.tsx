@@ -18,9 +18,9 @@ export default function DashboardStats({ stats }: DashboardStatsProps) {
       {statConfig.map((item) => {
         const value = stats[item.key];
         return (
-          <article key={item.key} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5">
-            <p className="text-xs uppercase tracking-wide text-[var(--muted-foreground)]">{item.label}</p>
-            <p className="mt-2 text-2xl font-semibold text-[var(--foreground)]">
+          <article key={item.key} className="rounded-xl border border-border bg-surface p-5">
+            <p className="text-xs uppercase tracking-wide text-text-secondary">{item.label}</p>
+            <p className="mt-2 text-2xl font-semibold text-foreground">
               {value}
               {item.suffix ?? ""}
             </p>

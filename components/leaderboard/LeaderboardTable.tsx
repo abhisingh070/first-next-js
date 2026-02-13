@@ -10,15 +10,15 @@ export default function LeaderboardTable({ rows, filter }: LeaderboardTableProps
   const sortedRows = sortLeaderboardRows(rows);
 
   return (
-    <section className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-6">
+    <section className="rounded-xl border border-border bg-surface p-4 sm:p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-[var(--foreground)]">{filter.replace("_", " ")} leaderboard</h2>
-        <span className="text-xs uppercase text-[var(--muted-foreground)]">Stable ranking</span>
+        <h2 className="text-xl font-semibold text-foreground">{filter.replace("_", " ")} leaderboard</h2>
+        <span className="text-xs uppercase text-text-secondary">Stable ranking</span>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse text-sm">
           <thead>
-            <tr className="border-b border-[var(--border)] text-left text-[var(--muted-foreground)]">
+            <tr className="border-b border-border text-left text-text-secondary">
               <th className="px-3 py-2">Rank</th>
               <th className="px-3 py-2">Username</th>
               <th className="px-3 py-2">Rating / Points</th>
@@ -28,7 +28,7 @@ export default function LeaderboardTable({ rows, filter }: LeaderboardTableProps
           </thead>
           <tbody>
             {sortedRows.map((row, index) => (
-              <tr key={row.username} className="border-b border-[var(--border)]/70 text-[var(--foreground)]">
+              <tr key={row.username} className="border-b border-border/70 text-foreground">
                 <td className="px-3 py-3">{index + 1}</td>
                 <td className="px-3 py-3">{row.username}</td>
                 <td className="px-3 py-3">{row.rating}</td>

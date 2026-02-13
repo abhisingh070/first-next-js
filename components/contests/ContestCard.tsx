@@ -11,16 +11,16 @@ export default function ContestCard({ contest }: ContestCardProps) {
   const status = getContestStatus(contest.startTime, contest.durationMinutes);
 
   return (
-    <article className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5">
+    <article className="rounded-xl border border-border bg-surface p-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h3 className="text-lg font-semibold text-[var(--foreground)]">{contest.title}</h3>
+        <h3 className="text-lg font-semibold text-foreground">{contest.title}</h3>
         <span className={`rounded-full px-3 py-1 text-xs ${getStatusBadgeClass(status)}`}>{status}</span>
       </div>
-      <p className="mt-3 text-sm text-[var(--muted-foreground)]">Start: {formatDateTime(contest.startTime)}</p>
-      <p className="mt-1 text-sm text-[var(--muted-foreground)]">Duration: {formatDuration(contest.durationMinutes)}</p>
+      <p className="mt-3 text-sm text-text-secondary">Start: {formatDateTime(contest.startTime)}</p>
+      <p className="mt-1 text-sm text-text-secondary">Duration: {formatDuration(contest.durationMinutes)}</p>
       <Link
         href={`/contests/${contest.id}`}
-        className="mt-4 inline-flex rounded-md border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--surface-2)]"
+        className="mt-4 inline-flex rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-surface-2"
       >
         View Contest
       </Link>

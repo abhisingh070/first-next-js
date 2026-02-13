@@ -39,17 +39,17 @@ export default function SignupPage() {
 
   return (
     <section className="mx-auto flex w-full max-w-6xl justify-center px-4 py-14 sm:px-6">
-      <div className="w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
-        <h1 className="text-2xl font-semibold text-[var(--foreground)]">Create your CodeArena account</h1>
-        <p className="mt-2 text-sm text-[var(--muted-foreground)]">You can start with mock contests and stats immediately.</p>
+      <div className="w-full max-w-md rounded-2xl border border-border bg-surface p-6">
+        <h1 className="text-2xl font-semibold text-foreground">Create your CodeArena account</h1>
+        <p className="mt-2 text-sm text-text-secondary">You can start with mock contests and stats immediately.</p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <label className="block">
-            <span className="mb-2 block text-sm text-[var(--muted-foreground)]">Username</span>
+            <span className="mb-2 block text-sm text-text-secondary">Username</span>
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full rounded-md border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2 text-sm outline-none ring-[var(--accent)] focus:ring-2"
+              className="w-full rounded-md border border-border bg-surface-2 px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
               placeholder="Enter username"
               minLength={3}
               required
@@ -57,24 +57,24 @@ export default function SignupPage() {
           </label>
 
           <label className="block">
-            <span className="mb-2 block text-sm text-[var(--muted-foreground)]">Email</span>
+            <span className="mb-2 block text-sm text-text-secondary">Email</span>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
-              className="w-full rounded-md border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2 text-sm outline-none ring-[var(--accent)] focus:ring-2"
+              className="w-full rounded-md border border-border bg-surface-2 px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
               placeholder="you@example.com"
               required
             />
           </label>
 
           <label className="block">
-            <span className="mb-2 block text-sm text-[var(--muted-foreground)]">Password</span>
+            <span className="mb-2 block text-sm text-text-secondary">Password</span>
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              className="w-full rounded-md border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2 text-sm outline-none ring-[var(--accent)] focus:ring-2"
+              className="w-full rounded-md border border-border bg-surface-2 px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
               placeholder="At least 6 characters"
               minLength={6}
               required
@@ -87,15 +87,15 @@ export default function SignupPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-[var(--accent-foreground)] disabled:opacity-60"
+            className="w-full rounded-md bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground disabled:opacity-60"
           >
             {loading ? "Creating account..." : "Sign Up"}
           </button>
         </form>
 
-        <p className="mt-4 text-sm text-[var(--muted-foreground)]">
+        <p className="mt-4 text-sm text-text-secondary">
           Already have an account?{" "}
-          <Link href="/auth/login" className="text-[var(--accent)] hover:underline">
+          <Link href="/auth/login" className="text-accent hover:underline">
             Login
           </Link>
         </p>

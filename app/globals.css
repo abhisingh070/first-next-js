@@ -1,29 +1,155 @@
+/* ============================================
+   Tailwind v4 Import (must come first)
+   ============================================ */
 @import "tailwindcss";
 
-:root {
-  --background: #0a0d14;
-  --foreground: #e7edf5;
-  --surface: #111722;
-  --surface-2: #1a2332;
-  --border: #243145;
-  --muted-foreground: #a8b6cb;
-  --accent: #20c58e;
-  --accent-foreground: #072218;
-}
+/* ============================================
+   Design Tokens & Theme Variables
+   ============================================ */
+@import "../styles/tokens.css";
+@import "../styles/themes.css";
 
+/* ============================================
+   Tailwind Theme Configuration
+   Maps CSS variables to Tailwind utilities
+   ============================================ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: "Space Grotesk", "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+  /* Colors */
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --color-bg-primary: var(--color-bg);
+  --color-bg-secondary: var(--color-bg-secondary);
+  --color-surface: var(--color-bg-secondary);
+  --color-surface-2: var(--color-card);
+  --color-card: var(--color-card);
+  --color-border: var(--color-border);
+  --color-text-primary: var(--color-text);
+  --color-text-secondary: var(--color-text-muted);
+  --color-text-muted: var(--color-text-muted);
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-accent: var(--color-primary);
+  --color-accent-foreground: var(--color-primary-foreground);
+  --color-success: var(--color-success);
+  --color-danger: var(--color-danger);
+  --color-warning: var(--color-warning);
+  --color-code-bg: var(--color-code-bg);
+  --color-code-text: var(--color-code-text);
+  
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  
+  /* Border Radius */
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
 }
 
-* {
-  border-color: var(--border);
+/* ============================================
+   Base Styles (Tailwind v4 Layer)
+   IMPORTANT: Must use @layer for v4 compatibility
+   ============================================ */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    transition: background-color var(--transition-base), color var(--transition-base);
+  }
+
+  /* Gradient background for body */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60vh;
+    background: radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--color-primary) 8%, transparent),
+      transparent 58%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  a:hover {
+    opacity: 0.9;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    transition: background-color var(--transition-fast),
+      border-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  input,
+  select,
+  textarea {
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  code,
+  pre {
+    font-family: var(--font-mono);
+    background: var(--color-code-bg);
+    color: var(--color-code-text);
+  }
 }
 
-body {
-  background: radial-gradient(circle at top, #121c2f 0%, var(--background) 40%);
-  color: var(--foreground);
-  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+/* ============================================
+   Component Styles (Tailwind v4 Layer)
+   ============================================ */
+@layer components {
+  .card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
 }

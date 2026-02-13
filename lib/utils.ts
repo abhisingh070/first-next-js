@@ -66,7 +66,11 @@ export function sortLeaderboardRows(rows: LeaderboardRow[]) {
 }
 
 export function getStatusBadgeClass(status: ContestStatus) {
-  if (status === "LIVE") return "bg-green-500/20 text-green-300 border border-green-500/40";
-  if (status === "UPCOMING") return "bg-blue-500/20 text-blue-300 border border-blue-500/40";
-  return "bg-zinc-500/20 text-zinc-300 border border-zinc-500/40";
+  if (status === "LIVE") {
+    return "bg-[var(--color-status-live-bg)] text-[var(--color-status-live-text)] border border-[var(--color-status-live-border)]";
+  }
+  if (status === "UPCOMING") {
+    return "bg-[var(--color-status-upcoming-bg)] text-[var(--color-status-upcoming-text)] border border-[var(--color-status-upcoming-border)]";
+  }
+  return "bg-[var(--color-status-ended-bg)] text-[var(--color-status-ended-text)] border border-[var(--color-status-ended-border)]";
 }

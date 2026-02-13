@@ -21,14 +21,14 @@ export default function Features() {
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">Everything you need to level up</h2>
-        <p className="mt-2 text-sm text-[var(--muted-foreground)]">A focused workflow from practice to competition.</p>
+        <h2 className="text-2xl font-semibold text-foreground">Everything you need to level up</h2>
+        <p className="mt-2 text-sm text-text-secondary">A focused workflow from practice to competition.</p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         {features.map((feature) => (
-          <article key={feature.title} className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5">
-            <h3 className="text-lg font-medium text-[var(--foreground)]">{feature.title}</h3>
-            <p className="mt-2 text-sm leading-6 text-[var(--muted-foreground)]">{feature.description}</p>
+          <article key={feature.title} className="rounded-xl border border-border bg-surface p-5">
+            <h3 className="text-lg font-medium text-foreground">{feature.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-text-secondary">{feature.description}</p>
           </article>
         ))}
       </div>
