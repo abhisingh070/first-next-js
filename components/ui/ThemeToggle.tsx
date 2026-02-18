@@ -6,13 +6,7 @@ import { useTheme, getThemeLabel, type Theme } from "@/components/theme/ThemePro
 export default function ThemeToggle() {
   const { theme, setTheme, availableThemes } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Prevent SSR issues
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -46,13 +40,6 @@ export default function ThemeToggle() {
     setTheme(newTheme);
     setIsOpen(false);
   };
-
-  // Don't render until mounted to prevent SSR issues
-  if (!isMounted) {
-    return (
-      <div className="h-10 w-10 rounded-md border border-border bg-bg-secondary" />
-    );
-  }
 
   return (
     <div className="relative" ref={dropdownRef}>

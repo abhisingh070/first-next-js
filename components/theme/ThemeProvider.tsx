@@ -34,22 +34,21 @@ const STORAGE_KEY = "app-theme";
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(DEFAULT_THEME);
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window === "undefined") {
+      return DEFAULT_THEME;
+    }
 
-  // Load theme from localStorage on mount
+    const storedTheme = localStorage.getItem(STORAGE_KEY) as Theme | null;
+    return storedTheme && AVAILABLE_THEMES.includes(storedTheme) ? storedTheme : DEFAULT_THEME;
+  });
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const storedTheme = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    
-    if (storedTheme && AVAILABLE_THEMES.includes(storedTheme)) {
-      setThemeState(storedTheme);
-      document.documentElement.dataset.theme = storedTheme;
-    } else {
-      // Set default theme
-      document.documentElement.dataset.theme = DEFAULT_THEME;
-    }
-  }, []);
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem(STORAGE_KEY, theme);
+  }, [theme]);
 
   // Update theme
   const setTheme = (newTheme: Theme) => {
@@ -59,11 +58,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
 
     setThemeState(newTheme);
-    
-    if (typeof window !== "undefined") {
-      document.documentElement.dataset.theme = newTheme;
-      localStorage.setItem(STORAGE_KEY, newTheme);
-    }
   };
 
   const value: ThemeContextType = {

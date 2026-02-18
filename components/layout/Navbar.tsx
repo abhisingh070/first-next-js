@@ -14,18 +14,26 @@ type NavbarProps = {
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/problems", label: "problems" },
   { href: "/contests", label: "Contests" },
+  { href: "/code", label: "Code" },
   { href: "/leaderboard", label: "Leaderboard" },
 ];
 
-export default function Navbar({ isAuthenticated = false, username }: NavbarProps) {
+export default function Navbar({
+  isAuthenticated = false,
+  username,
+}: NavbarProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur">
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="text-lg font-semibold tracking-tight text-foreground">
+        <Link
+          href="/"
+          className="text-lg font-semibold tracking-tight text-foreground"
+        >
           CodeArena
         </Link>
 
@@ -46,7 +54,9 @@ export default function Navbar({ isAuthenticated = false, username }: NavbarProp
                 key={link.href}
                 href={link.href}
                 className={`text-sm transition ${
-                  isActive ? "text-accent" : "text-text-secondary hover:text-foreground"
+                  isActive
+                    ? "text-accent"
+                    : "text-text-secondary hover:text-foreground"
                 }`}
               >
                 {link.label}
